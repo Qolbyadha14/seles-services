@@ -13,7 +13,7 @@ class Stock extends Eloquent
         'vehicle_id',
         'stock',
         'created_by',
-        'updated_by'.
+        'updated_by',
         'status'
     ];
 }
