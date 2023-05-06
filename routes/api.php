@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\v1\auth\AuthController;
+use App\Http\Controllers\api\v1\master\MasterKendaraanController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,12 @@ Route::prefix('v1')->group(function () {
     Route::group(['middleware' => ['jwt.auth']], static function () {
         Route::prefix('/account')->group(function () {
             Route::post('register', [AuthController::class,'register'])->name('auth.register');
+        });
+    });
+
+    Route::prefix('/master')->group(function () {
+        Route::prefix('/vehicle')->group(function () {
+            Route::post('store', [MasterKendaraanController::class,'store'])->name('master.vehicle.store');
         });
     });
 
