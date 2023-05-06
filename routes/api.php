@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\v1\auth\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+Route::prefix('v1')->group(function () {
+    Route::prefix('/account')->group(function () {
+        Route::post('authenticate', [AuthController::class,'authenticate'])->name('auth.authenticate');
+    });
+
+    Route::group(['middleware' => ['jwt.auth']], static function () {
+        Route::prefix('/account')->group(function () {
+            Route::post('register', [AuthController::class,'register'])->name('auth.register');
+        });
+    });
+
 });
+
+
