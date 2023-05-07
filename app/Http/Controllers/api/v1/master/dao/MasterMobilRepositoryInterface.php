@@ -6,5 +6,5 @@ use App\Http\BaseRepositories\RepositoryInterface;
 
 interface MasterMobilRepositoryInterface extends RepositoryInterface
 {
-
+    public function allWithRelation();
 }

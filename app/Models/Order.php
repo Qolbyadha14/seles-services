@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\api\v1\master\dao\MasterMotorRepositoryInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\DB;
 use Jenssegers\Mongodb\Eloquent\Model;

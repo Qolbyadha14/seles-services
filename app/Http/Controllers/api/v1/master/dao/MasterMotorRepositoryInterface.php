@@ -7,4 +7,5 @@ use App\Http\BaseRepositories\RepositoryInterface;
 interface MasterMotorRepositoryInterface extends RepositoryInterface
 {
 
+    public function allWithRelation();
 }

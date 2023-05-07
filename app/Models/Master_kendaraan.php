@@ -19,4 +19,6 @@ class Master_kendaraan extends Model
         'updated_by',
         'is_active'
     ];
+
+
 }

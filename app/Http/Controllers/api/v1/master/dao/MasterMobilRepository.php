@@ -13,4 +13,25 @@ class MasterMobilRepository extends BaseRepository implements MasterMobilReposit
     {
         parent::__construct($master_mobil);
     }
+
+    public function allWithRelation()
+    {
+        $models = $this->model->with('vehicle')->get();
+
+        $data = [];
+
+        foreach ($models as $model) {
+            $vehicle = $model->vehicle;
+
+            $data[] = $model->append([
+                'year', 'color', 'price'
+            ])->makeHidden('vehicle')->toArray();
+
+            $data[count($data) - 1]['year'] = $vehicle->year;
+            $data[count($data) - 1]['color'] = $vehicle->color;
+            $data[count($data) - 1]['price'] = $vehicle->price;
+        }
+
+        return $data;
+    }
 }

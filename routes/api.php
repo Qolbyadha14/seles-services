@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\api\v1\auth\AuthController;
 use App\Http\Controllers\api\v1\master\MasterKendaraanController;
+use App\Http\Controllers\api\v1\report\ReportController;
 use App\Http\Controllers\api\v1\sales\OrderController;
 use App\Http\Controllers\api\v1\sales\StockController;
 use Illuminate\Http\Request;
@@ -40,6 +41,15 @@ Route::prefix('v1')->group(function () {
 
             Route::prefix('/stock')->group(function () {
                 Route::post('store', [StockController::class,'store'])->name('transaction.stock.store');
+            });
+        });
+        Route::prefix('/report')->group(function () {
+            Route::prefix('/stock')->group(function () {
+                Route::get('report_stock_vehicle', [ReportController::class,'ReportStockVehicle'])->name('report.stock.report_stock_vehicle');
+            });
+
+            Route::prefix('/sales')->group(function () {
+                Route::get('report_sales_vehicle', [ReportController::class,'ReportAllSalesVehicle'])->name('report.sales.report_sales_vehicle');
             });
         });
 
