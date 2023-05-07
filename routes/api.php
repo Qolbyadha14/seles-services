@@ -23,12 +23,11 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('v1')->group(function () {
     Route::prefix('/account')->group(function () {
         Route::post('authenticate', [AuthController::class,'authenticate'])->name('auth.authenticate');
+        Route::post('register', [AuthController::class,'register'])->name('auth.register');
+
     });
 
     Route::group(['middleware' => ['jwt.auth']], static function () {
-        Route::prefix('/account')->group(function () {
-            Route::post('register', [AuthController::class,'register'])->name('auth.register');
-        });
         Route::prefix('/master')->group(function () {
             Route::prefix('/vehicle')->group(function () {
                 Route::post('store', [MasterKendaraanController::class,'store'])->name('master.vehicle.store');
