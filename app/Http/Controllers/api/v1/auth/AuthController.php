@@ -24,19 +24,6 @@ class AuthController extends Controller
         $this->userRepository = $userRepository;
     }
 
-    public function index()
-    {
-        $users = $this->userRepository->all();
-        return ApiResponse::success($users);
-    }
-    protected function respondWithToken($token)
-    {
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => Auth::factory()->getTTL() * 60
-        ]);
-    }
     public function authenticate(Request $request)
     {
 
