@@ -3,17 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
 class Stock extends Eloquent
 {
     use HasFactory;
+    protected $connection = 'mongodb';
+    protected $collection = 'stocks';
     protected $fillable = [
         'vehicle_id',
-        'stock',
+        'total_stock',
+        'type',
         'created_by',
         'updated_by',
-        'status'
+        'is_active',
     ];
 }

@@ -11,6 +11,10 @@ use App\Http\Controllers\api\v1\master\dao\MasterMobilRepository;
 use App\Http\Controllers\api\v1\master\dao\MasterMobilRepositoryInterface;
 use App\Http\Controllers\api\v1\master\dao\MasterMotorRepository;
 use App\Http\Controllers\api\v1\master\dao\MasterMotorRepositoryInterface;
+use App\Http\Controllers\api\v1\sales\dao\OrderRepository;
+use App\Http\Controllers\api\v1\sales\dao\OrderRepositoryInterface;
+use App\Http\Controllers\api\v1\sales\dao\StockRepository;
+use App\Http\Controllers\api\v1\sales\dao\StockRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\DatabasePresenceVerifier;
 use Illuminate\Validation\PresenceVerifierInterface;
@@ -35,6 +39,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(MasterKendaraanRepositoryInterface::class, MasterKendaraanRepository::class);
         $this->app->bind(MasterMobilRepositoryInterface::class, MasterMobilRepository::class);
         $this->app->bind(MasterMotorRepositoryInterface::class, MasterMotorRepository::class);
+        $this->app->bind(OrderRepositoryInterface::class, OrderRepository::class);
+        $this->app->bind(StockRepositoryInterface::class, StockRepository::class);
     }
 
     /**
