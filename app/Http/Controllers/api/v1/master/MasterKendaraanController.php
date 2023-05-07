@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Responses\ApiResponse;
 use Exception;
 use Illuminate\Http\Request;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class MasterKendaraanController extends Controller
 {
@@ -35,7 +36,7 @@ class MasterKendaraanController extends Controller
     {
         try {
             $dto = new MasterKendaraanCreateDto($request->all());
-
+            $user = JWTAuth::user();
             $kendaraan = [
                 'year' => $dto->year,
                 'color' => $dto->color,
@@ -55,7 +56,7 @@ class MasterKendaraanController extends Controller
                     "machine" => $dto->vehicle['machine'],
                     "passenger_capacity" => $dto->vehicle['passenger_capacity'],
                     "type" => $dto->vehicle['type'],
-                    'created_by' => '',
+                    'created_by' => $user->email,
                     'updated_by' => null,
                     'is_active' => true,
                 ];
@@ -68,7 +69,7 @@ class MasterKendaraanController extends Controller
                     "machine" => $dto->vehicle['machine'],
                     "suspension_type" => $dto->vehicle['suspension_type'],
                     "transmission_type" => $dto->vehicle['transmission_type'],
-                    'created_by' => '',
+                    'created_by' => $user->email,
                     'updated_by' => null,
                     'is_active' => true,
                 ];
